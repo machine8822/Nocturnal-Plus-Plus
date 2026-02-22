@@ -1,0 +1,107 @@
+[
+    {
+        "questionId": "b8f1c2d3-4444-4eee-9aaa-dddddddddddd",
+        "title": "Binary search time complexity",
+        "description": "What is the time complexity of binary search on a sorted array and why?",
+        "difficulty": "EASY",
+        "type": "SHORT_ANSWER",
+        "category": "ARRAY",
+        "imageURL": "",
+        "author": {
+            "userId": "2c7e9d41-8b0a-4f21-9a6e-5c3d1f8e7b90",
+            "email": "theodore.johnson@example.com",
+            "passwordHash": "$2a$12$ED.krIEIAy97TmhHuIcMWuTMuyifEYlEbH7xNpfpEXxKHgP5MQGXO",
+            "name": "Theodore Johnson",
+            "createdAt": "2024-01-26T10:30:00",
+            "lastLogin": "2026-02-20T14:45:00",
+            "isAdmin": false,
+            "isContributor": true
+        },
+        "totalAttempts": 0,
+        "totalSuccesses": 0,
+        "createdAt": "2026-02-21T13:30:00",
+        "lastUpdated": "2026-02-21T13:30:00",
+        "answers": [],
+        "comment": [
+            {
+                "text": "Be sure to explain how the search space is reduced on each step.",
+                "author": {
+                    "userId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
+                    "email": "grant.smith@example.com",
+                    "passwordHash": "$2a$12$dOHvtvzLflQ8cC4hR50Z3.lMcJXDsAwMZD9sfy4gWthw2zWI6vDKe",
+                    "name": "Grant Smith",
+                    "createdAt": "2024-01-15T10:30:00",
+                    "lastLogin": "2026-02-16T14:45:00",
+                    "isAdmin": true,
+                    "isContributor": true
+                },
+                "timestamp": "2026-02-21T13:32:00",
+                "isEdited": false,
+                "upvoteCount": 0,
+                "downvoteCount": 0
+            }
+        ]
+    },
+    {
+        "questionId": "e4c2a1b9-5555-4ddd-9eee-ffffffffffff",
+        "title": "Handling conflict between coworkers",
+        "description": "Two employees are constantly fighting with one another. How do you proceed?",
+        "difficulty": "MEDIUM",
+        "type": "SHORT_ANSWER",
+        "category": "ARRAY",
+        "imageURL": "",
+        "author": {
+            "userId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
+            "email": "grant.smith@example.com",
+            "passwordHash": "$2a$12$dOHvtvzLflQ8cC4hR50Z3.lMcJXDsAwMZD9sfy4gWthw2zWI6vDKe",
+            "name": "Grant Smith",
+            "createdAt": "2024-01-15T10:30:00",
+            "lastLogin": "2026-02-16T14:45:00",
+            "isAdmin": true,
+            "isContributor": true
+        },
+        "totalAttempts": 0,
+        "totalSuccesses": 0,
+        "createdAt": "2026-02-21T14:00:00",
+        "lastUpdated": "2026-02-21T14:00:00",
+        "answers": [
+            {
+                "answerId": "aa12bb34-6666-4ccc-9aaa-111111111111",
+                "codeSnippet": "",
+                "explanation": "I would first meet with each employee individually to understand their perspectives. Then, I would bring them together to try and find common ground.",
+                "upvoteCount": 0,
+                "downvoteCount": 0,
+                "author": {
+                    "userId": "2c7e9d41-8b0a-4f21-9a6e-5c3d1f8e7b90",
+                    "email": "theodore.johnson@example.com",
+                    "passwordHash": "$2a$12$ED.krIEIAy97TmhHuIcMWuTMuyifEYlEbH7xNpfpEXxKHgP5MQGXO",
+                    "name": "Theodore Johnson",
+                    "createdAt": "2024-01-26T10:30:00",
+                    "lastLogin": "2026-02-20T14:45:00",
+                    "isAdmin": false,
+                    "isContributor": true
+                },
+                "createdAt": "2026-02-21T14:05:00"
+            }
+        ],
+        "comment": [
+            {
+                "text": "Consider mentioning documentation or involving HR if the conflict continues.",
+                "author": {
+                    "userId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
+                    "email": "grant.smith@example.com",
+                    "passwordHash": "$2a$12$dOHvtvzLflQ8cC4hR50Z3.lMcJXDsAwMZD9sfy4gWthw2zWI6vDKe",
+                    "name": "Grant Smith",
+                    "createdAt": "2024-01-15T10:30:00",
+                    "lastLogin": "2026-02-16T14:45:00",
+                    "isAdmin": true,
+                    "isContributor": true
+                },
+                "timestamp": "2026-02-21T14:07:00",
+                "isEdited": false,
+                "upvoteCount": 0,
+                "downvoteCount": 0
+            }
+        ]
+    }
+]
