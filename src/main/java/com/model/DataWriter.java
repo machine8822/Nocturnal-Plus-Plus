@@ -29,13 +29,4 @@ public class DataWriter {
             return false;
         }
     }
-
-    public boolean saveSubmissions(ArrayList<QuestionSubmission> subs) {
-        try (FileWriter writer = new FileWriter(basePath + "/submissions.json")) {
-            writer.write(subs.toString());
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
-    }
 }
