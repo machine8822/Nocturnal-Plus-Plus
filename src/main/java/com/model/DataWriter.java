@@ -107,6 +107,7 @@ public class DataWriter {
 		// Fill in the basic question fields
 		questionDetails.put("questionId", question.getQuestionId());
 		questionDetails.put("title", question.getTitle());
+		questionDetails.put("description", question.getDescription());
 		questionDetails.put("difficulty", question.getDifficulty());
 		questionDetails.put("type", question.getType());
 		questionDetails.put("category", question.getCategory());
@@ -116,6 +117,9 @@ public class DataWriter {
 		questionDetails.put("totalSuccesses", question.getTotalSuccesses());
 		questionDetails.put("createdAt", question.getCreatedAt());
 		questionDetails.put("lastUpdated", question.getLastUpdated());
+		// include comments list (currently empty)
+		questionDetails.put("comments", new JSONArray());
+		
 
 		// Handle sections (a list of section objects)
 		ArrayList<Section> sections = question.getSections();
