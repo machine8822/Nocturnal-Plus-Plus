@@ -1,72 +1,76 @@
 [
-    {
-        "questionId": "57fb4022-ff25-4d2a-ab30-027081caa6fb",
-        "title": "Binary search time complexity",
-        "description": "What is the time complexity of binary search on a sorted array and why?",
-        "difficulty": "EASY",
-        "type": "SHORT_ANSWER",
-        "category": "ARRAY",
-        "imageURL": "",
-        "author": {
-            "userId": "2c7e9d41-8b0a-4f21-9a6e-5c3d1f8e7b90",
-        },
-        "totalAttempts": 0,
-        "totalSuccesses": 0,
-        "createdAt": "2026-02-21T13:30:00",
-        "lastUpdated": "2026-02-21T13:30:00",
+  {
+    "questionId": "57fb4022-ff25-4d2a-ab30-027081caa6fb",
+    "title": "Binary search time complexity",
+    "difficulty": "EASY",
+    "type": "SHORT_ANSWER",
+    "category": "ARRAY",
+    "imageURL": "",
+    "authorId": "2c7e9d41-8b0a-4f21-9a6e-5c3d1f8e7b90",
+    "totalAttempts": 0,
+    "totalSuccesses": 0,
+    "createdAt": "2026-02-21T13:30:00",
+    "lastUpdated": "2026-02-21T13:30:00",
+    "sections": [
+      {
+        "title": "Description",
+        "content": "What is the time complexity of binary search on a sorted array and why?",
+        "type": "DESCRIPTION",
         "answers": [],
-        "comment": [
-            {
-                "text": "Be sure to explain how the search space is reduced on each step.",
-                "author": {
-                    "userId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
-                },
-                "timestamp": "2026-02-21T13:32:00",
-                "isEdited": false,
-                "upvoteCount": 0,
-                "downvoteCount": 0
-            }
+        "comments": [
+          {
+            "text": "Be sure to explain how the search space is reduced on each step.",
+            "authorId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
+            "timestamp": "2026-02-21T13:32:00",
+            "isEdited": false,
+            "upvoteCount": 0,
+            "downvoteCount": 0,
+            "replies": []
+          }
         ]
-    },
-    {
-        "questionId": "d6060e08-4d54-4eb1-9e65-961e5f4ebdc6",
-        "title": "Detecting duplicates in an array",
-        "description": "Given an integer array, explain an efficient approach to determine whether the array contains any duplicate values. What is the time complexity of your solution?",
-        "difficulty": "MEDIUM",
-        "type": "SHORT_ANSWER",
-        "category": "ARRAY",
-        "imageURL": "",
-        "author": {
-            "userId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
-        },
-        "totalAttempts": 0,
-        "totalSuccesses": 0,
-        "createdAt": "2026-02-21T14:00:00",
-        "lastUpdated": "2026-02-21T14:00:00",
+      }
+    ]
+  },
+  {
+    "questionId": "d6060e08-4d54-4eb1-9e65-961e5f4ebdc6",
+    "title": "Detecting duplicates in an array",
+    "difficulty": "MEDIUM",
+    "type": "SHORT_ANSWER",
+    "category": "ARRAY",
+    "imageURL": "",
+    "authorId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
+    "totalAttempts": 0,
+    "totalSuccesses": 0,
+    "createdAt": "2026-02-21T14:00:00",
+    "lastUpdated": "2026-02-21T14:00:00",
+    "sections": [
+      {
+        "title": "Description",
+        "content": "Given an integer array, explain an efficient approach to determine whether the array contains any duplicate values. What is the time complexity of your solution?",
+        "type": "DESCRIPTION",
         "answers": [
-            {
-                "answerId": "0e1c4803-d3f4-4701-bf71-b6eab340ad1e",
-                "codeSnippet": "",
-                "explanation": "A common approach is to iterate through the array while inserting elements into a HashSet. If an element already exists in the set, a duplicate has been found. This solution runs in O(n) time because each insertion and lookup in a HashSet is O(1) on average. The space complexity is O(n) due to storing elements in the set.",
-                "upvoteCount": 0,
-                "downvoteCount": 0,
-                "author": {
-                    "userId": "2c7e9d41-8b0a-4f21-9a6e-5c3d1f8e7b90",
-                },
-                "createdAt": "2026-02-21T14:05:00"
-            }
+          {
+            "codeSnippet": "",
+            "explanation": "A common approach is to use a HashSet. Insert elements and check if already exists. O(n) time and O(n) space.",
+            "upvoteCount": 0,
+            "downvoteCount": 0,
+            "authorId": "2c7e9d41-8b0a-4f21-9a6e-5c3d1f8e7b90",
+            "createdAt": "2026-02-21T14:05:00",
+            "comments": []
+          }
         ],
-        "comment": [
-            {
-                "text": "Consider discussing how the solution would change if additional space was not allowed.",
-                "author": {
-                    "userId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
-                },
-                "timestamp": "2026-02-21T14:07:00",
-                "isEdited": false,
-                "upvoteCount": 0,
-                "downvoteCount": 0
-            }
+        "comments": [
+          {
+            "text": "Consider discussing how the solution would change if additional space was not allowed.",
+            "authorId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
+            "timestamp": "2026-02-21T14:07:00",
+            "isEdited": false,
+            "upvoteCount": 0,
+            "downvoteCount": 0,
+            "replies": []
+          }
         ]
-    }
+      }
+    ]
+  }
 ]
