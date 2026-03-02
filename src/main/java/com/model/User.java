@@ -1,19 +1,13 @@
 package com.model;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Represents a system user account.
- *
- * @author Jonah Mosquera
- */
+import org.mindrot.jbcrypt.BCrypt;
+
 public class User {
     private final UUID userId;
     private final String email;
@@ -35,9 +29,6 @@ public class User {
                 LocalDateTime.now(), null, false, false, new Profile(), new ArrayList<>());
     }
 
-    /**
-     * Constructor used by DataLoader when password is already stored as a hash.
-     */
     public User(UUID userId, String email, String passwordHash, String firstName, String lastName) {
         this(userId, email, passwordHash, firstName, lastName,
                 LocalDateTime.now(), null, false, false, new Profile(), new ArrayList<>());
@@ -128,21 +119,23 @@ public class User {
         if (profile != null) this.profile = profile;
     }
 
-    /**
-     * Validates the provided password against the stored hash.
-     */
     public boolean login(String password) {
         if (password == null) return false;
-        boolean ok = passwordHash.equals(hashPassword(password));
+        if (passwordHash == null || passwordHash.isBlank()) return false;
+
+        boolean ok = false;
+
+        if (passwordHash.startsWith("$2")) {
+            ok = BCrypt.checkpw(password, passwordHash);
+        }
+
         if (ok) {
             lastLogin = LocalDateTime.now();
         }
+
         return ok;
     }
 
-    /**
-     * Changes the password if oldPass matches and newPass meets complexity rules.
-     */
     public boolean changePassword(String oldPass, String newPass) {
         if (!login(oldPass)) return false;
         if (!isValidPassword(newPass)) return false;
@@ -203,17 +196,7 @@ public class User {
 
     public static String hashPassword(String password) {
         if (password == null) return "";
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hash) {
-                sb.append(String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            return "";
-        }
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
     }
 
     @Override
