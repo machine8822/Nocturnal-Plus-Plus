@@ -1,5 +1,9 @@
 package com.model;
 
+/**
+ * @author King
+ */
+
 public class SystemFacade {
     private static SystemFacade instance;
     private UserList users;
