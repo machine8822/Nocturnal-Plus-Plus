@@ -16,12 +16,19 @@ public class DriverUI {
 	public void scenario1() {
 		System.out.println();
 
-		User loggedInUser = driver.login("grant.smith@example.com", "$2a$12$dOHvtvzLflQ8cC4hR50Z3.lMcJXDsAwMZD9sfy4gWthw2zWI6vDKe");
+		User loggedInUser = driver.login("grant.smith@example.com", "123grant");
 		if (loggedInUser == null) {
 			System.out.println("Sorry we couldn't login.");
 			return;
 		}
 		System.out.println("Amy Smith is now logged in");
+
+	}
+
+
+	public static void main(String[] args) {
+		DriverUI appInterface = new DriverUI();
+		appInterface.run();
 
 	}
 }

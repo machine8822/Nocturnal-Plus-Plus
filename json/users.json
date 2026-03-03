@@ -2,7 +2,7 @@
   {
     "userId": "9f4a2c10-6e3d-4f2a-9b6e-8a1c2d3e4f50",
     "email": "grant.smith@example.com",
-    "passwordHash": "$2a$12$dOHvtvzLflQ8cC4hR50Z3.lMcJXDsAwMZD9sfy4gWthw2zWI6vDKe",
+    "passwordHash": "$2a$10$th6A84.pXLCt0OX8M.aR.u0Q.dcqlxBKE1M4hJvzSJCzpzSNTZUUi",
     "firstName": "Grant",
     "lastName": "Smith",
     "createdAt": "2024-01-15T10:30:00",
