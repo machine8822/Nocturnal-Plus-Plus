@@ -1,6 +1,8 @@
 package com.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Simple test for DataWriter to check if it can save users and questions to JSON files.
@@ -33,42 +35,39 @@ public class DataWriterTest {
 	private static void testSaveUsers() {
 		// Create a list of test users
 		ArrayList<User> users = new ArrayList<>();
+		
+		//dummy user uuids for testing
+		UUID user1Id = UUID.fromString("11111111-1111-1111-1111-111111111111");
+        UUID user2Id = UUID.fromString("22222222-2222-2222-2222-222222222222");
 
-		// Create User 1 (you'll need to adjust this based on your User constructor)
-		// EDIT THESE LINES to match your User class constructor!
+		// Create User 1 
 		User user1 = new User(
-			"user-id-1",
-			"john.doe@example.com",
-			"hashed-password-123",
-			"John",
-			"Doe",
-			"2024-01-15T10:30:00",
-			"2026-02-20T14:45:00",
-			true,  // isAdmin
-			true   // isContributor
+			user1Id,
+            "john.doe@example.com",
+            "hashed-password-123",
+            "John",
+            "Doe",
+            LocalDateTime.parse("2024-01-15T10:30:00"),
+            LocalDateTime.parse("2026-02-20T14:45:00"),
+            true,
+            true,
+            new Profile("University of South Carolina", "Computer Science", 2026, 5, "https://example.com/resume.pdf"),
+            new ArrayList<>()
 		);
-		// Set the profile (adjust based on your Profile class)
-		user1.getProfile().setSchool("University of South Carolina");
-		user1.getProfile().setMajor("Computer Science");
-		user1.getProfile().setTotalUpvotes(5);
-		user1.getProfile().setResumeURL("https://example.com/resume.pdf");
-
 		// Create User 2
 		User user2 = new User(
-			"user-id-2",
-			"jane.smith@example.com",
-			"hashed-password-456",
-			"Jane",
-			"Smith",
-			"2024-02-01T10:30:00",
-			"2026-02-18T14:45:00",
-			false, // isAdmin
-			true   // isContributor
-		);
-		user2.getProfile().setSchool("University of North Carolina");
-		user2.getProfile().setMajor("Computer Engineering");
-		user2.getProfile().setTotalUpvotes(10);
-		user2.getProfile().setResumeURL("https://example.com/resume2.pdf");
+            user2Id,
+            "jane.smith@example.com",
+            "hashed-password-456",
+            "Jane",
+            "Smith",
+            LocalDateTime.parse("2024-02-01T10:30:00"),
+            LocalDateTime.parse("2026-02-18T14:45:00"),
+            false,
+            true,
+            new Profile("University of North Carolina", "Computer Engineering", 2027, 10, "https://example.com/resume2.pdf"),
+            new ArrayList<>()
+        );
 
 		// Add users to the list
 		users.add(user1);
@@ -78,10 +77,10 @@ public class DataWriterTest {
 		boolean success = DataWriter.saveUsers(users);
 
 		if (success) {
-			System.out.println("✓ SUCCESS: Users saved to json/users.json");
+			System.out.println(" SUCCESS: Users saved to json/users.json");
 			System.out.println("  Total users saved: " + users.size());
 		} else {
-			System.out.println("✗ FAILED: Could not save users");
+			System.out.println(" FAILED: Could not save users");
 		}
 	}
 
@@ -92,45 +91,51 @@ public class DataWriterTest {
 		// Create a list of test questions
 		ArrayList<InterviewQuestion> questions = new ArrayList<>();
 
-		// Create Question 1 (adjust based on your InterviewQuestion constructor)
-		InterviewQuestion question1 = new InterviewQuestion(
-			"q-id-1",
-			"Binary search time complexity",
-			"EASY",
-			"SHORT_ANSWER",
-			"ARRAY",
-			"",  // imageURL
-			"user-id-2",  // authorId
-			0,  // totalAttempts
-			0   // totalSuccesses
-		);
-		// Set timestamps (adjust based on your class methods)
-		question1.setCreatedAt("2026-02-21T13:30:00");
-		question1.setLastUpdated("2026-02-21T13:30:00");
+		UUID user1Id = UUID.fromString("11111111-1111-1111-1111-111111111111");
+        UUID user2Id = UUID.fromString("22222222-2222-2222-2222-222222222222");
 
+		// Create Question 1 
+		InterviewQuestion question1 = new InterviewQuestion(
+            UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+            "Binary search time complexity",
+            "What is the time complexity of binary search on a sorted array and why?",
+            Difficulty.EASY,
+            Category.ARRAY,
+            QuestionType.SHORT_ANSWER,
+            user2Id,
+            LocalDateTime.parse("2026-02-21T13:30:00"),
+            LocalDateTime.parse("2026-02-21T13:30:00"),
+            0,
+            0,
+            ""
+		);
+		
 		// Add a section to the question
 		Section section1 = new Section(
 			"Description",
 			"What is the time complexity of binary search on a sorted array and why?",
 			"DESCRIPTION"
 		);
+		// Add the section to the question (you may need to adjust this based on your Question class)
 		question1.addSection(section1);
 
 		// Create Question 2
-		InterviewQuestion question2 = new InterviewQuestion(
-			"q-id-2",
-			"Detecting duplicates in an array",
-			"MEDIUM",
-			"SHORT_ANSWER",
-			"ARRAY",
-			"",  // imageURL
-			"user-id-1",  // authorId
-			0,  // totalAttempts
-			0   // totalSuccesses
-		);
-		question2.setCreatedAt("2026-02-21T14:00:00");
-		question2.setLastUpdated("2026-02-21T14:00:00");
 
+        InterviewQuestion question2 = new InterviewQuestion(
+            UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
+            "Detecting duplicates in an array",
+            "Given an integer array, explain an efficient approach to determine whether the array contains any duplicate values.",
+            Difficulty.MEDIUM,
+            Category.ARRAY,
+            QuestionType.SHORT_ANSWER,
+            user1Id,
+            LocalDateTime.parse("2026-02-21T14:00:00"),
+            LocalDateTime.parse("2026-02-21T14:00:00"),
+            0,
+            0,
+            ""
+        );
+	
 		// Add a section to the question
 		Section section2 = new Section(
 			"Description",
@@ -147,10 +152,10 @@ public class DataWriterTest {
 		boolean success = DataWriter.saveQuestions(questions);
 
 		if (success) {
-			System.out.println("✓ SUCCESS: Questions saved to json/questions.json");
+			System.out.println(" SUCCESS: Questions saved to json/questions.json");
 			System.out.println("  Total questions saved: " + questions.size());
 		} else {
-			System.out.println("✗ FAILED: Could not save questions");
+			System.out.println(" FAILED: Could not save questions");
 		}
 	}
 }
