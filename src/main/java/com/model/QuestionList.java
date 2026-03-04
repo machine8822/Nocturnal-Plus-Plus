@@ -1,24 +1,22 @@
 package com.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Singleton repository for storing and querying {@link InterviewQuestion} objects
- * by their question ID.
+ * Singleton repository for storing and querying {@link InterviewQuestion} objects.
  */
 public class QuestionList {
 
     private static QuestionList instance;
-    private HashMap<UUID, InterviewQuestion> questions;
+    private List<InterviewQuestion> questions;
 
     /**
      * Constructs an empty question repository.
      */
     private QuestionList() {
-        questions = new HashMap<>();
+        questions = new ArrayList<>();
     }
 
     /**
@@ -43,10 +41,13 @@ public class QuestionList {
     public boolean addQuestion(InterviewQuestion q) {
         if (q == null || q.getQuestionId() == null) return false;
 
-        UUID id = q.getQuestionId();
-        if (questions.containsKey(id)) return false;
+        for (InterviewQuestion existing : questions) {
+            if (existing != null && q.getQuestionId().equals(existing.getQuestionId())) {
+                return false;
+            }
+        }
 
-        questions.put(id, q);
+        questions.add(q);
         return true;
     }
 
@@ -59,7 +60,10 @@ public class QuestionList {
      */
     public InterviewQuestion getQuestion(UUID id) {
         if (id == null) return null;
-        return questions.get(id);
+        for (InterviewQuestion q : questions) {
+            if (q != null && id.equals(q.getQuestionId())) return q;
+        }
+        return null;
     }
 
     /**
@@ -70,7 +74,7 @@ public class QuestionList {
      */
     public boolean removeQuestion(UUID id) {
         if (id == null) return false;
-        return questions.remove(id) != null;
+        return questions.removeIf(q -> q != null && id.equals(q.getQuestionId()));
     }
 
     /**
@@ -79,7 +83,7 @@ public class QuestionList {
      * @return a new list containing every question currently in the repository
      */
     public List<InterviewQuestion> getAll() {
-        return new ArrayList<>(questions.values());
+        return new ArrayList<>(questions);
     }
 
     /**
@@ -93,7 +97,7 @@ public class QuestionList {
         List<InterviewQuestion> result = new ArrayList<>();
         if (cat == null) return result;
 
-        for (InterviewQuestion q : questions.values()) {
+        for (InterviewQuestion q : questions) {
             if (q != null && cat.equals(q.getCategory())) {
                 result.add(q);
             }
@@ -112,7 +116,7 @@ public class QuestionList {
         List<InterviewQuestion> result = new ArrayList<>();
         if (diff == null) return result;
 
-        for (InterviewQuestion q : questions.values()) {
+        for (InterviewQuestion q : questions) {
             if (q != null && diff.equals(q.getDifficulty())) {
                 result.add(q);
             }
