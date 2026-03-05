@@ -1,6 +1,9 @@
 package com.model;
 
 import java.util.Scanner;
+import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class DriverUI {
 	private SystemFacade driver;
@@ -29,9 +32,24 @@ public class DriverUI {
 	public void scenario2() {
 		System.out.println("Scenario 2: User Creation");
 
-		User newUser = new User("john.doe@example.com", "password123", "John", "Doe");
+		UUID user1Id = UUID.randomUUID();
+		User newUser = new User(
+			user1Id,
+            "john.doe@example.com",
+            "hashed-password-123",
+            "John",
+            "Doe",
+            LocalDateTime.parse("2024-01-15T10:30:00"),
+            LocalDateTime.parse("2026-02-20T14:45:00"),
+            true,
+            true,
+            new Profile("University of South Carolina", "Computer Science", 2026, 5, "https://example.com/resume.pdf"),
+            new ArrayList<>()
+		);
+
 		if (driver.addUser(newUser)) {
 			System.out.println("User John Doe has been successfully created");
+			//driver.saveAllData();
 			//driver.deleteUser(newUser.getUserId());
 		} else {
 			System.out.println("Sorry, we couldn't create the user.");
