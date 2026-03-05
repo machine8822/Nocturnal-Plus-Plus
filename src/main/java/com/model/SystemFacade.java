@@ -86,6 +86,8 @@ public class SystemFacade {
         return users.getUsers();
     }
 
-
+    public boolean addQuestion(InterviewQuestion question) {
+        return questions.addQuestion(question);
+    }
 
 }

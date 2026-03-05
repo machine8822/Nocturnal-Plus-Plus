@@ -16,8 +16,10 @@ public class DriverUI {
 		scenario1();
 		//scenario2();
 		//scenario3();
+		//scenario4();
 	}
 
+	//User Scenarios
 	public void scenario1() {
 		System.out.println("Scenario 1: Login");
 
@@ -73,6 +75,41 @@ public class DriverUI {
 		} else {
 			System.out.println("Sorry, we couldn't log out the user.");
 		}
+
+	}
+
+	// Question Scenarios
+	public void scenario4() {
+		System.out.println("Scenario 4: Question Creation");
+
+		// Login a user first (questions need an author)
+		User loggedInUser = driver.login("grant.smith@example.com", "123grant");
+		if (loggedInUser == null) {
+			System.out.println("Must login first to create a question.");
+			return;
+		}
+
+		// Create a new interview question
+		InterviewQuestion newQuestion = new InterviewQuestion(
+			"How far can fish fly?",
+			"Given the weight and size, how far will that fucker fly?",
+			Difficulty.MEDIUM,
+			Category.LINKED_LIST,
+			QuestionType.SHORT_ANSWER,
+			loggedInUser.getUserId()
+		);
+
+		if (driver.addQuestion(newQuestion)) {
+			System.out.println("Question created successfully: " + newQuestion.getTitle());
+			// Save to JSON file
+			driver.saveAllData();
+			System.out.println("Question saved to questions.json");
+		} else {
+			System.out.println("Failed to create question.");
+		}
+
+
+
 
 	}
 
