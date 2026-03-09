@@ -68,6 +68,7 @@ public class DataWriter {
 		JSONObject profile = new JSONObject();
 		profile.put("school", user.getProfile().getSchool());
 		profile.put("major", user.getProfile().getMajor());
+		profile.put("gradYear", user.getProfile().getGradYear());
 		profile.put("totalUpvotes", user.getProfile().getTotalUpvotes());
 		profile.put("resumeURL", user.getProfile().getResumeURL());
 		userDetails.put("profile", profile);
@@ -118,6 +119,14 @@ public class DataWriter {
 		questionDetails.put("totalSuccesses", question.getTotalSuccesses());
 		questionDetails.put("createdAt", question.getCreatedAt().toString());
 		questionDetails.put("lastUpdated", question.getLastUpdated().toString());
+
+		// Question-level comments
+		JSONArray qComments = new JSONArray();
+		List<Comment> questionComments = question.getComments();
+		for (int i = 0; i < questionComments.size(); i++) {
+			qComments.add(getCommentJSON(questionComments.get(i)));
+		}
+		questionDetails.put("comments", qComments);
 		
 
 		// Handle sections as a nested array inside the question
@@ -145,6 +154,7 @@ public class DataWriter {
 		sectionDetails.put("title", section.getTitle());
 		sectionDetails.put("content", section.getBody());
 		sectionDetails.put("type", section.getSectionType().toString());
+		sectionDetails.put("dataType", section.getDataType() == null ? null : section.getDataType().toString());
 
 		// Handle answers (a list of Answer objects)
 		JSONArray answersJSON = new JSONArray();

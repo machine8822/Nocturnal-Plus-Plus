@@ -3,6 +3,7 @@ package com.model;
 import java.io.FileReader;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.json.simple.JSONArray;
@@ -37,10 +38,16 @@ public class DataLoader {
                 String passwordHash = (String) personJSON.get("passwordHash");
                 String firstName = (String) personJSON.get("firstName");
                 String lastName = (String) personJSON.get("lastName");
-                // additional fields can be read here if you so desire...
 
-                // The User constructor must match whateve User class uses.
-                users.add(new User(id, email, passwordHash, firstName, lastName));
+                LocalDateTime createdAt = safeParseDate((String) personJSON.get("createdAt"));
+                LocalDateTime lastLogin = safeParseDate((String) personJSON.get("lastLogin"));
+                boolean isAdmin = personJSON.get("isAdmin") instanceof Boolean ? (Boolean) personJSON.get("isAdmin") : false;
+                boolean isContributor = personJSON.get("isContributor") instanceof Boolean ? (Boolean) personJSON.get("isContributor") : false;
+
+                Profile profile = loadProfile((JSONObject) personJSON.get("profile"));
+
+                users.add(new User(id, email, passwordHash, firstName, lastName,
+                        createdAt, lastLogin, isAdmin, isContributor, profile, new ArrayList<>()));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,15 +102,47 @@ public class DataLoader {
                     (int) totalSuccesses,
                     imageURL);
 
+                // question-level comments
+                JSONArray qComments = (JSONArray) qJSON.get("comments");
+                if (qComments != null) {
+                    for (int j = 0; j < qComments.size(); j++) {
+                        JSONObject cJSON = (JSONObject) qComments.get(j);
+                        q.addComment(loadComment(cJSON));
+                    }
+                }
+
                 // load sections
                 JSONArray secArray = (JSONArray) qJSON.get("sections");
                 for (int j = 0; secArray != null && j < secArray.size(); j++) {
                     JSONObject sJSON = (JSONObject) secArray.get(j);
                     String stitle = (String) sJSON.get("title");
                     String scontent = (String) sJSON.get("content");
-                    String stype = (String) sJSON.get("type");
 
-                    q.addSection(new Section(stitle, scontent, stype));
+                    SectionType sectionType = SectionType.valueOf((String) sJSON.get("type"));
+                    DataType dataType = null;
+                    if (sJSON.get("dataType") != null) {
+                        dataType = DataType.valueOf((String) sJSON.get("dataType"));
+                    }
+
+                    Section sec = new Section(stitle, scontent, dataType, sectionType);
+
+                    // answers
+                    JSONArray answersJSON = (JSONArray) sJSON.get("answers");
+                    if (answersJSON != null) {
+                        for (int a = 0; a < answersJSON.size(); a++) {
+                            sec.addAnswer(loadAnswer((JSONObject) answersJSON.get(a)));
+                        }
+                    }
+
+                    // comments
+                    JSONArray commentsJSON = (JSONArray) sJSON.get("comments");
+                    if (commentsJSON != null) {
+                        for (int c = 0; c < commentsJSON.size(); c++) {
+                            sec.addComment(loadComment((JSONObject) commentsJSON.get(c)));
+                        }
+                    }
+
+                    q.addSection(sec);
                 }
                 questions.add(q);
             }
@@ -122,5 +161,101 @@ public class DataLoader {
         for (User u : users) {
             System.out.println(u);
         }
+    }
+
+    private static LocalDateTime safeParseDate(String raw) {
+        if (raw == null || raw.isBlank()) return null;
+        try {
+            return LocalDateTime.parse(raw);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static Profile loadProfile(JSONObject profileJSON) {
+        if (profileJSON == null) return new Profile();
+
+        String school = (String) profileJSON.get("school");
+        String major = (String) profileJSON.get("major");
+
+        int gradYear = 0;
+        if (profileJSON.get("gradYear") instanceof Long) {
+            gradYear = ((Long) profileJSON.get("gradYear")).intValue();
+        }
+
+        int totalUpvotes = 0;
+        if (profileJSON.get("totalUpvotes") instanceof Long) {
+            totalUpvotes = ((Long) profileJSON.get("totalUpvotes")).intValue();
+        }
+
+        String resumeURL = (String) profileJSON.get("resumeURL");
+        return new Profile(school, major, gradYear, totalUpvotes, resumeURL);
+    }
+
+    private static Answer loadAnswer(JSONObject answerJSON) {
+        if (answerJSON == null) return null;
+
+        String codeSnippet = (String) answerJSON.get("codeSnippet");
+        String explanation = (String) answerJSON.get("explanation");
+        UUID authorId = answerJSON.get("authorId") == null ? null : UUID.fromString((String) answerJSON.get("authorId"));
+
+        Answer answer = new Answer(codeSnippet, explanation, authorId);
+
+        if (answerJSON.get("createdAt") != null) {
+            answer.setCreatedAt(safeParseDate((String) answerJSON.get("createdAt")));
+        }
+
+        if (answerJSON.get("upvoteCount") instanceof Long) {
+            answer.setUpvoteCount(((Long) answerJSON.get("upvoteCount")).intValue());
+        }
+
+        if (answerJSON.get("downvoteCount") instanceof Long) {
+            answer.setDownvoteCount(((Long) answerJSON.get("downvoteCount")).intValue());
+        }
+
+        JSONArray commentsJSON = (JSONArray) answerJSON.get("comments");
+        List<Comment> comments = new ArrayList<>();
+        if (commentsJSON != null) {
+            for (int i = 0; i < commentsJSON.size(); i++) {
+                comments.add(loadComment((JSONObject) commentsJSON.get(i)));
+            }
+        }
+        answer.setComments(comments);
+
+        return answer;
+    }
+
+    private static Comment loadComment(JSONObject commentJSON) {
+        if (commentJSON == null) return null;
+
+        String text = (String) commentJSON.get("text");
+        UUID authorId = commentJSON.get("authorId") == null ? null : UUID.fromString((String) commentJSON.get("authorId"));
+
+        Comment comment = new Comment(text, authorId);
+
+        comment.setTimestamp(safeParseDate((String) commentJSON.get("timestamp")));
+
+        if (commentJSON.get("isEdited") instanceof Boolean) {
+            comment.setEdited((Boolean) commentJSON.get("isEdited"));
+        }
+
+        if (commentJSON.get("upvoteCount") instanceof Long) {
+            comment.setUpvoteCount(((Long) commentJSON.get("upvoteCount")).intValue());
+        }
+
+        if (commentJSON.get("downvoteCount") instanceof Long) {
+            comment.setDownvoteCount(((Long) commentJSON.get("downvoteCount")).intValue());
+        }
+
+        JSONArray repliesJSON = (JSONArray) commentJSON.get("replies");
+        List<Comment> replies = new ArrayList<>();
+        if (repliesJSON != null) {
+            for (int i = 0; i < repliesJSON.size(); i++) {
+                replies.add(loadComment((JSONObject) repliesJSON.get(i)));
+            }
+        }
+        comment.setReplies(replies);
+
+        return comment;
     }
 }
