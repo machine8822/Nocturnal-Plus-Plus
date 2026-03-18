@@ -161,6 +161,11 @@ public class DataLoader {
         for (User u : users) {
             System.out.println(u);
         }
+
+        ArrayList<InterviewQuestion> questions = DataLoader.loadQuestions();
+        for (InterviewQuestion q : questions) {
+            System.out.println(q);
+        }
     }
 
     private static LocalDateTime safeParseDate(String raw) {

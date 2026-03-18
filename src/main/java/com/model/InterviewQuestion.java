@@ -253,10 +253,16 @@ public class InterviewQuestion {
     @Override
     public String toString()
     {
+        String displayDescription = (description == null || description.isBlank())
+            ? "(no description)"
+            : description;
+
         return "InterviewQuestion{" +
                 "id=" + questionId +
                 ", title='" + title + '\'' +
+            ", description='" + displayDescription + '\'' +
                 ", difficulty=" + difficulty +
+                ", type=" + type +
                 ", category=" + category +
                 ", attempts=" + totalAttempts +
                 ", successes=" + totalSuccesses +
