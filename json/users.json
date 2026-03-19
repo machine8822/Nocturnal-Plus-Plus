@@ -18,60 +18,6 @@
     "passwordHash": "$2a$10$th6A84.pXLCt0OX8M.aR.u0Q.dcqlxBKE1M4hJvzSJCzpzSNTZUUi"
   },
   {
-    "firstName": "Demo",
-    "lastName": "User",
-    "createdAt": "2026-03-13T12:41:26.058008800",
-    "lastLogin": null,
-    "profile": {
-      "resumeURL": "",
-      "major": "",
-      "school": "",
-      "totalUpvotes": 0,
-      "gradYear": 0
-    },
-    "isAdmin": false,
-    "userId": "ab286f95-3f89-4e9d-a44e-be709dee46ba",
-    "isContributor": false,
-    "email": "demo.user.1773420085711@example.com",
-    "passwordHash": "$2a$12$6w9PtR3nC4Fzht.8KWzaJ.seXxEu83RkHZwy\/F.8EVfhZ4bauu8nu"
-  },
-  {
-    "firstName": "Demo",
-    "lastName": "User",
-    "createdAt": "2026-03-13T12:58:43.925619",
-    "lastLogin": null,
-    "profile": {
-      "resumeURL": "",
-      "major": "",
-      "school": "",
-      "totalUpvotes": 0,
-      "gradYear": 0
-    },
-    "isAdmin": false,
-    "userId": "ed2aa9f0-0c5e-4e4b-a8fe-8917cedb4089",
-    "isContributor": false,
-    "email": "demo.user.1773421123640@example.com",
-    "passwordHash": "$2a$12$Dgd\/p5U4OGOK9.Xnu6DO0eCCt04On6iMOXbQRslTO2e6xjIifcrqe"
-  },
-  {
-    "firstName": "Demo",
-    "lastName": "User",
-    "createdAt": "2026-03-13T12:43:59.971792300",
-    "lastLogin": null,
-    "profile": {
-      "resumeURL": "",
-      "major": "",
-      "school": "",
-      "totalUpvotes": 0,
-      "gradYear": 0
-    },
-    "isAdmin": false,
-    "userId": "7b32f736-7f23-4285-a8a7-bb3e2f20bcf3",
-    "isContributor": false,
-    "email": "demo.user.1773420239715@example.com",
-    "passwordHash": "$2a$12$Dae1sg3s1P4dqEaLtcjj8OkROB\/XXGfkJ1PVOpN.lz9eWc5Ew3db6"
-  },
-  {
     "firstName": "Theodore",
     "lastName": "Johnson",
     "createdAt": "2024-01-26T10:30",
@@ -88,41 +34,5 @@
     "isContributor": true,
     "email": "theodore.johnson@example.com",
     "passwordHash": "$2a$12$ED.krIEIAy97TmhHuIcMWuTMuyifEYlEbH7xNpfpEXxKHgP5MQGXO"
-  },
-  {
-    "firstName": "Demo",
-    "lastName": "User",
-    "createdAt": "2026-03-18T20:58:21.768093900",
-    "lastLogin": null,
-    "profile": {
-      "resumeURL": "",
-      "major": "",
-      "school": "",
-      "totalUpvotes": 0,
-      "gradYear": 0
-    },
-    "isAdmin": false,
-    "userId": "7c1a41e9-12f3-4bc7-bd38-d1d01cdefb08",
-    "isContributor": false,
-    "email": "demo.user.1773881901522@example.com",
-    "passwordHash": "$2a$12$iVaAtHO6DwjB0DQputnz5uT5\/GjooeAF5QNQjiaid7GVmB08cej.y"
-  },
-  {
-    "firstName": "Demo",
-    "lastName": "User",
-    "createdAt": "2026-03-13T12:45:38.636761500",
-    "lastLogin": null,
-    "profile": {
-      "resumeURL": "",
-      "major": "",
-      "school": "",
-      "totalUpvotes": 0,
-      "gradYear": 0
-    },
-    "isAdmin": false,
-    "userId": "5f43aad2-013d-4147-a032-abd00257e214",
-    "isContributor": false,
-    "email": "demo.user.1773420338384@example.com",
-    "passwordHash": "$2a$12$OLgQn8VqFZzEsBPIk04Xz.cN0szQPSKOFmxQuI44jmgF7Yfm1QdUC"
   }
 ]
