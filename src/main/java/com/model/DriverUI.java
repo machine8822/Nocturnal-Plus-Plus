@@ -23,7 +23,7 @@ public class DriverUI {
 		System.out.println("Scenario 1: Login");
 
 		User loggedInUser = driver.login("grant.smith@example.com", "123grant");
-		User failedLogin = driver.login("asshat@example.com", "wrongpassword");
+		User failedLogin = driver.login("SarahBaker@example.com", "wrongpassword");
 		if (loggedInUser == null) {
 			System.out.println("Sorry we couldn't login.");
 			return;
@@ -32,7 +32,7 @@ public class DriverUI {
 		System.out.println("Grant Smith is now logged in");
 
 		if (failedLogin == null) {
-			System.out.println("Failed login attempt with asshat@example.com");
+			System.out.println("Failed login attempt with SarahBaker@example.com");
 
 		}
 

@@ -247,7 +247,8 @@ public class InterviewQuestion {
     }
 
     /**
-     * Utility
+     * To string to display the question in a readable format.
+     * @return String representation of the question, including sections and comments.
      */
 
     @Override
